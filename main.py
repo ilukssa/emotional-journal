@@ -9,14 +9,11 @@ def load_data_from_json(file_path):
     return data
 
 def dump_data_to_json(file_path, new_data):
-    with open(file_path, "w") as f:
-        json.dump(new_data, f)
+    with open(file_path, "a") as f:
+        json.dump(new_data, f, indent=2)
 
 def main():
-    user_input = input("Как ваше настроение?")
-    current_date = datetime.datetime.now().date()
-    data = {str(current_date) : user_input}
-    dump_data_to_json(notes_path, data)
+
 
 if __name__ == "__main__":
     main()
