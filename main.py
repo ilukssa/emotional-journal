@@ -12,6 +12,17 @@ def dump_data_to_json(file_path, new_data):
     with open(file_path, "a") as f:
         json.dump(new_data, f, indent=2)
 
+def get_user_input():
+    data = load_data_from_json(notes_path)
+    to_rewrite = "y"
+    user_input = input()
+    current_date = str(datetime.datetime.now().date())
+    if current_date in data:
+        to_rewrite = "f"
+        print("Вы уже оставляли сегодня запись, хотите переписать? (y/n)")
+
+        
+
 def main():
 
 
