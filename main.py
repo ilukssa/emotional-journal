@@ -13,7 +13,10 @@ def dump_data_to_json(file_path, new_data):
         json.dump(new_data, f)
 
 def main():
-    
+    user_input = input("Как ваше настроение?")
+    current_date = datetime.datetime.now().date()
+    data = {str(current_date) : user_input}
+    dump_data_to_json(notes_path, data)
 
 if __name__ == "__main__":
     main()
