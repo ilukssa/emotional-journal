@@ -9,7 +9,7 @@ def load_data_from_json(file_path):
     return data
 
 def dump_data_to_json(file_path, new_data):
-    with open(file_path, "a") as f:
+    with open(file_path, "w") as f:
         json.dump(new_data, f, indent=2)
 
 def get_user_input():
@@ -18,12 +18,15 @@ def get_user_input():
     user_input = input()
     current_date = str(datetime.datetime.now().date())
     if current_date in data:
-        to_rewrite = "f"
-        print("Вы уже оставляли сегодня запись, хотите переписать? (y/n)")
-
-        
+        to_rewrite = input("Вы уже оставляли сегодня запись, хотите переписать? (yY/nN): ").lower()
+        while to_rewrite != "y" and to_rewrite != "n":
+            to_rewrite = input("Введите (yY/nN): ").lower()
+    if to_rewrite == "y":
+        data[current_date] = user_input
+        dump_data_to_json(notes_path, data)
 
 def main():
+    get_user_input()
 
 
 if __name__ == "__main__":
